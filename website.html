@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryan Drane: Video Editor, Writer, Artist</title>
+    <meta name="description" content="Ryan Drane is a video editor, writer, and artist. Creator of Down the Drane - showcasing creative work across multiple mediums.">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,400italic,700,700italic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8a8f9499dc.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #000;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .topbar {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        .tp-social a {
+            color: #fff;
+            font-size: 18px;
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+
+        .tp-social a:hover {
+            color: #ff4757;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff4757;
+        }
+
+        /* Intro Section */
+        #intro {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+            padding: 150px 0 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        #intro .hero-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+        }
+
+        #intro .tagline {
+            font-family: 'Vollkorn', serif;
+            font-size: 1.8em;
+            font-style: italic;
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* About Section */
+        #about {
+            background: #1a1a1a;
+            padding: 80px 0;
+        }
+
+        #about h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .quote {
+            font-family: 'Vollkorn', serif;
+            font-size: 1.2em;
+            font-style: italic;
+            color: #ddd;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .quote a {
+            color: #ff4757;
+            text-decoration: none;
+        }
+
+        .quote a:hover {
+            text-decoration: underline;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 0 0 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .about-text {
+            flex: 1;
+            color: white;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .about-text a {
+            color: #ff4757;
+            text-decoration: none;
+        }
+
+        .about-text a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        .social-links a {
+            color: white;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff4757;
+        }
+
+        /* Videos Section */
+        #videos {
+            background: #0d0d0d;
+            padding: 80px 0;
+            color: white;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-head h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .section-head h5 {
+            color: #999;
+            font-size: 1.1em;
+            font-weight: 400;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-item {
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .video-content {
+            padding: 20px;
+        }
+
+        .video-content h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            min-height: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #ff4757;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #ff3838;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: #1a1a1a;
+            padding: 80px 0;
+            color: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-item {
+            background: #0d0d0d;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .skill-item i {
+            font-size: 3em;
+            color: #ff4757;
+            margin-bottom: 20px;
+        }
+
+        .skill-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .skill-item p {
+            color: #999;
+            font-size: 0.95em;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #333;
+        }
+
+        footer a {
+            color: #ff4757;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            #intro .hero-name {
+                font-size: 2.5em;
+            }
+
+            #intro .tagline {
+                font-size: 1.2em;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                flex: 1;
+                text-align: center;
+            }
+
+            .video-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="container">
+        <div class="topbar">
+            <span class="tp-social">
+                <a href="https://twitter.com/DowntheDrane2" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.instagram.com/downthedrane/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/downthedrane" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.youtube.com/@downthedrane8626" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#intro">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#videos">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- INTRO -->
+<div id="intro">
+    <div class="container">
+        <h1 class="hero-name">RYAN DRANE</h1>
+        <p class="tagline">Video Editor • Writer • Artist</p>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about">
+    <div class="container">
+        <h1 align="center">ABOUT</h1>
+        
+        <p class="quote" align="center">
+            "A super excited Artist that Writes, Draws, and Films as much as possible before that big death at the end."<br>– Ryan Drane
+        </p>
+
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://via.placeholder.com/300x400/ee0979/ffffff?text=Ryan+Drane" alt="Ryan Drane">
+            </div>
+            <div class="about-text">
+                <p>Ryan Drane is a multi-talented creative professional based in the United States, specializing in video editing, writing, and visual art. As the creator of <a href="https://www.youtube.com/@downthedrane8626" target="_blank">Down the Drane</a>, Ryan has built a YouTube channel with over 1,000 subscribers and nearly 600,000 views, showcasing his diverse talents across 576+ videos since 2018.</p>
+                
+                <p>With expertise in video production and post-production, Ryan brings stories to life through compelling editing, creative writing, and artistic vision. His work demonstrates a unique ability to blend multiple creative disciplines into cohesive, engaging content that resonates with audiences.</p>
+                
+                <p>Ryan's portfolio spans various formats and styles, from narrative storytelling to visual art projects. His passion for creating drives him to constantly explore new techniques and push the boundaries of his craft. Whether editing video, crafting written content, or developing visual concepts, Ryan approaches each project with enthusiasm and dedication.</p>
+                
+                <p>Available for video editing, writing projects, and creative collaborations. Follow Ryan's work and connect:</p>
+                
+                <div class="social-links">
+                    <a href="https://twitter.com/DowntheDrane2" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/downthedrane/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/downthedrane" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills">
+    <div class="container">
+        <div class="section-head">
+            <h2>Skills & Expertise</h2>
+            <h5>Professional capabilities and creative talents</h5>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-item">
+                <i class="fa-solid fa-video"></i>
+                <h3>Video Editing</h3>
+                <p>Expert in post-production, cutting, transitions, color correction, and creating compelling visual narratives. Proficient with industry-standard editing software.</p>
+            </div>
+
+            <div class="skill-item">
+                <i class="fa-solid fa-pen-fancy"></i>
+                <h3>Writing</h3>
+                <p>Skilled in scriptwriting, creative writing, content creation, and storytelling across various formats and genres.</p>
+            </div>
+
+            <div class="skill-item">
+                <i class="fa-solid fa-palette"></i>
+                <h3>Visual Arts</h3>
+                <p>Talented in drawing, illustration, and visual design. Creates original artwork and visual concepts for diverse projects.</p>
+            </div>
+
+            <div class="skill-item">
+                <i class="fa-solid fa-film"></i>
+                <h3>Video Production</h3>
+                <p>Experienced in filming, cinematography, and understanding the full production pipeline from concept to final delivery.</p>
+            </div>
+
+            <div class="skill-item">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h3>Creative Direction</h3>
+                <p>Strong conceptual thinking and ability to develop unique creative visions for projects across multiple mediums.</p>
+            </div>
+
+            <div class="skill-item">
+                <i class="fa-solid fa-users"></i>
+                <h3>Content Creation</h3>
+                <p>Proven track record creating engaging content for YouTube with 576+ videos, 1K+ subscribers, and 591K+ views.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PORTFOLIO/VIDEOS -->
+<div id="videos">
+    <div class="container">
+        <div class="section-head">
+            <h2>Portfolio</h2>
+            <h5>Selected video projects and creative work from Down the Drane</h5>
+        </div>
+
+        <div class="video-grid">
+            <div class="video-item">
+                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=Video+Project+1" alt="Video Project 1">
+                <div class="video-content">
+                    <h4>Featured Video Project</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch on YouTube</a>
+                </div>
+            </div>
+
+            <div class="video-item">
+                <img src="https://via.placeholder.com/400x250/ff6a00/ffffff?text=Video+Project+2" alt="Video Project 2">
+                <div class="video-content">
+                    <h4>Creative Short Film</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch on YouTube</a>
+                </div>
+            </div>
+
+            <div class="video-item">
+                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=Video+Project+3" alt="Video Project 3">
+                <div class="video-content">
+                    <h4>Editing Showcase Reel</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch on YouTube</a>
+                </div>
+            </div>
+
+            <div class="video-item">
+                <img src="https://via.placeholder.com/400x250/ff6a00/ffffff?text=Video+Project+4" alt="Video Project 4">
+                <div class="video-content">
+                    <h4>Original Content Series</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch on YouTube</a>
+                </div>
+            </div>
+
+            <div class="video-item">
+                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=Video+Project+5" alt="Video Project 5">
+                <div class="video-content">
+                    <h4>Visual Storytelling Project</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch on YouTube</a>
+                </div>
+            </div>
+
+            <div class="video-item">
+                <img src="https://via.placeholder.com/400x250/ff6a00/ffffff?text=Video+Project+6" alt="Video Project 6">
+                <div class="video-content">
+                    <h4>Artistic Video Essay</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch on YouTube</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn" style="font-size: 1.2em; padding: 12px 30px;">
+                <i class="fa-brands fa-youtube"></i> View Full Portfolio on YouTube
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+    <div class="container">
+        <h3 style="color: white; margin-bottom: 20px; font-family: 'Montserrat', sans-serif;">Get In Touch</h3>
+        <p style="margin-bottom: 20px;">Interested in working together? Available for video editing, writing projects, and creative collaborations.</p>
+        <p>© Copyright Ryan Drane 2024 | All Rights Reserved</p>
+        <p style="margin-top: 20px;">
+            <a href="https://www.youtube.com/@downthedrane8626" target="_blank">YouTube</a> • 
+            <a href="https://www.instagram.com/downthedrane/" target="_blank">Instagram</a> • 
+            <a href="https://twitter.com/DowntheDrane2" target="_blank">Twitter</a> • 
+            <a href="https://www.facebook.com/downthedrane" target="_blank">Facebook</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
