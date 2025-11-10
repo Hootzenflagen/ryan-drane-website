@@ -23,6 +23,7 @@
             background: #000;
         }
 
+        /* Header */
         header {
             background: rgba(0, 0, 0, 0.95);
             padding: 20px 0;
@@ -80,6 +81,7 @@
             color: #ff4757;
         }
 
+        /* Intro Section */
         #intro {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 150px 0 80px 0;
@@ -111,6 +113,7 @@
             font-weight: 700;
         }
 
+        /* About Section */
         #about {
             background: #1a1a1a;
             padding: 80px 0;
@@ -130,6 +133,15 @@
             color: #ddd;
             margin-bottom: 25px;
             line-height: 1.6;
+        }
+
+        .quote a {
+            color: #ff4757;
+            text-decoration: none;
+        }
+
+        .quote a:hover {
+            text-decoration: underline;
         }
 
         .about-content {
@@ -163,6 +175,10 @@
             text-decoration: none;
         }
 
+        .about-text a:hover {
+            text-decoration: underline;
+        }
+
         .social-links {
             margin-top: 20px;
             font-size: 24px;
@@ -178,6 +194,7 @@
             color: #ff4757;
         }
 
+        /* Content Sections */
         .content-section {
             padding: 80px 0;
             color: white;
@@ -264,6 +281,7 @@
             background: #ff3838;
         }
 
+        /* Footer */
         footer {
             background: #000;
             padding: 40px 0;
@@ -277,6 +295,103 @@
             text-decoration: none;
         }
 
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: #ff4757;
+        }
+
+        .clickable-image {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .clickable-image:hover {
+            opacity: 0.8;
+        }
+
+        /* Image Gallery Styles */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-item h5 {
+            margin-top: 10px;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        /* Subsection Styles */
+        .subsection {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subsection h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ff4757;
+            text-align: center;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: row;
@@ -287,7 +402,7 @@
             nav ul li {
                 margin: 5px 8px;
             }
-            
+
             nav ul li a {
                 font-size: 11px;
             }
@@ -300,22 +415,43 @@
                 flex-direction: column;
             }
 
+            .about-image {
+                flex: 1;
+                text-align: center;
+            }
+
             .content-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .image-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .gallery-item img {
+                height: 200px;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
             }
         }
     </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
     <div class="container">
         <div class="topbar">
             <span class="tp-social">
-                <a href="https://twitter.com/DowntheDrane2" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://www.instagram.com/downthedrane/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.facebook.com/downthedrane" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://www.youtube.com/@downthedrane8626" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://twitter.com/DowntheDrane2" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.instagram.com/downthedrane/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/downthedrane" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.youtube.com/@downthedrane8626" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
             </span>
         </div>
         <nav>
@@ -324,14 +460,17 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#videos">Videos</a></li>
                 <li><a href="#animations">Animations</a></li>
-                <li><a href="#comics">Art/Comics</a></li>
-                <li><a href="#films">Film/Music</a></li>
+                <li><a href="#comics">Comics</a></li>
+                <li><a href="#films">Film</a></li>
+                <li><a href="#art">Art</a></li>
+                <li><a href="#music">Music</a></li>
                 <li><a href="#contact">Resume/Contact</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
+<!-- INTRO -->
 <div id="intro">
     <div class="container">
         <h1 class="hero-name">RYAN DRANE</h1>
@@ -343,6 +482,7 @@
     </div>
 </div>
 
+<!-- ABOUT -->
 <div id="about">
     <div class="container">
         <h1 align="center">ABOUT</h1>
@@ -352,11 +492,11 @@
         </p>
         
         <p class="quote" align="center">
-            "Ryan is hilarious"<br>– David Zucker (Airplane!)
+            "Ryan is a really Gifted artist, Musician & comic"<br>– Bill Chott (The Ringer)
         </p>
         
         <p class="quote" align="center">
-            "Ryan is a really Gifted artist, Musician & comic"<br>– Bill Chott (The Ringer)
+            "Ryan is hilarious"<br>– David Zucker (Airplane!)
         </p>
         
         <p class="quote" align="center">
@@ -374,26 +514,29 @@
             <div class="about-text">
                 <p>Ryan Drane is a multi-talented comedian, director, and writer based in the United States. A self-described "super excited artist that writes, draws, and films as much as possible before that big death at the end," Ryan brings boundless enthusiasm and creativity to everything he creates.</p>
                 
-                <p>As the creator of <a href="https://www.youtube.com/@downthedrane8626" target="_blank">Down the Drane</a>, Ryan has built an impressive portfolio with over 1,000 subscribers and nearly 600,000 views across 576+ videos since 2018.</p>
+                <p>As the creator of <a href="https://www.youtube.com/@downthedrane8626" target="_blank">Down the Drane</a>, Ryan has built an impressive portfolio with over 1,000 subscribers and nearly 600,000 views across 576+ videos since 2018. His work spans comedy sketches, animation, short films, music, comics, and more.</p>
                 
-                <p>Ryan's unique blend of humor, artistry, and pop culture knowledge has earned him praise from industry professionals including David Zucker (Airplane!), Rob Schrab (Rick & Morty), and Scott Aukerman (Comedy Bang Bang).</p>
+                <p>Ryan's unique blend of humor, artistry, and pop culture knowledge has earned him praise from industry professionals including David Zucker (Airplane!), Rob Schrab (Rick & Morty), and Scott Aukerman (Comedy Bang Bang). His work demonstrates exceptional range—from directing and editing to writing and illustration.</p>
+                
+                <p>Whether creating comedy content, drawing comics, composing music, or directing short films, Ryan approaches each project as a "Pop Culture Wizard" with complete enthusiasm and dedication to his craft.</p>
                 
                 <div class="social-links">
-                    <a href="https://twitter.com/DowntheDrane2" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/downthedrane/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/downthedrane" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://twitter.com/DowntheDrane2" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/downthedrane/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/downthedrane" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- VIDEOS -->
 <div id="videos" class="content-section">
     <div class="container">
         <div class="section-head">
             <h2>Videos</h2>
-            <h5>Short Films, Sketches, And Other Stuff Ryan Made</h5>
+            <h5>Short Films, Sketches, And Other Awesome Stuff Ryan Made</h5>
         </div>
 
         <div class="content-grid">
@@ -444,10 +587,35 @@
                     <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
                 </div>
             </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Purse+Problems" alt="Purse Problems">
+                <div class="content-details">
+                    <h4>Purse Problems</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=Hipsters+Are+Good" alt="Hipsters Are Good">
+                <div class="content-details">
+                    <h4>Hipsters Are Good</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Butler+Doctor" alt="Butler Doctor">
+                <div class="content-details">
+                    <h4>Butler Doctor</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- POPULAR VIDEOS & LIVE DIRECTING -->
 <div id="animations" class="content-section">
     <div class="container">
         <div class="section-head">
@@ -475,7 +643,7 @@
             </div>
 
             <div class="content-item">
-                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=Treating+Adults" alt="Treating Adults">
+                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=Treating+Adults+Like+Babies" alt="Treating Adults Like Babies">
                 <div class="content-details">
                     <h4>Treating Adults Like Babies</h4>
                     <p>499,000 Views</p>
@@ -500,7 +668,7 @@
 
         <div class="content-grid">
             <div class="content-item">
-                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Veritas" alt="Veritas">
+                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Veritas+(Jack)" alt="Veritas">
                 <div class="content-details">
                     <h4>Veritas (Jack)</h4>
                     <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
@@ -508,7 +676,7 @@
             </div>
 
             <div class="content-item">
-                <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=Christmas+2024" alt="Christmas">
+                <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=Christmas+2024" alt="Christmas 2024">
                 <div class="content-details">
                     <h4>Christmas 2024</h4>
                     <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
@@ -516,9 +684,25 @@
             </div>
 
             <div class="content-item">
-                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Passyon" alt="Passyon">
+                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Many+Strings+Multiview" alt="Many Strings">
                 <div class="content-details">
-                    <h4>Passyon</h4>
+                    <h4>Many Strings or Scott Service Multiview</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=Passion" alt="Passion">
+                <div class="content-details">
+                    <h4>Passion</h4>
+                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Kids+Club+Multiview" alt="Kids Club">
+                <div class="content-details">
+                    <h4>Kids Club Multiview Directing</h4>
                     <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
                 </div>
             </div>
@@ -526,10 +710,11 @@
     </div>
 </div>
 
+<!-- Comics -->
 <div id="comics" class="content-section">
     <div class="container">
         <div class="section-head">
-            <h2>Art/Comics</h2>
+            <h2>Comics</h2>
             <h5>Original Comics and Illustrations</h5>
         </div>
 
@@ -543,9 +728,41 @@
             </div>
 
             <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=Aliens" alt="Aliens">
+                <div class="content-details">
+                    <h4>Aliens</h4>
+                    <a href="#" class="btn">View</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Robot+Scat" alt="Robot Scat">
+                <div class="content-details">
+                    <h4>Robot Scat</h4>
+                    <a href="#" class="btn">View</a>
+                </div>
+            </div>
+
+            <div class="content-item">
                 <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=Godzilla" alt="Godzilla">
                 <div class="content-details">
                     <h4>Godzilla</h4>
+                    <a href="#" class="btn">View</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Nailed+It" alt="Nailed It">
+                <div class="content-details">
+                    <h4>Nailed It</h4>
+                    <a href="#" class="btn">View</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=Jesus" alt="Jesus">
+                <div class="content-details">
+                    <h4>Jesus</h4>
                     <a href="#" class="btn">View</a>
                 </div>
             </div>
@@ -557,38 +774,229 @@
                     <a href="#" class="btn">View</a>
                 </div>
             </div>
+			
+			<div class="content-item">
+                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Down+The+Drane" alt="Down The Drane">
+                <div class="content-details">
+                    <h4>Down The Drane</h4>
+                    <a href="#" class="btn">View</a>
+                </div>
+            </div>
+			
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=Tree" alt="Tree">
+                <div class="content-details">
+                    <h4>Tree</h4>
+                    <a href="#" class="btn">View</a>
+                </div>
+            </div>
+         
+        </div>
+
+        <div style="margin-top: 60px; padding: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+            <h3 style="font-family: 'Montserrat', sans-serif; font-size: 2em; margin-bottom: 20px; text-align: center;">Rocket Wrecked</h3>
+            <p style="color: #999; font-size: 1.1em; text-align: center; margin-bottom: 30px;">Rocket Wrecked is a comic about...</p>
+
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x500/667eea/ffffff?text=Cover" alt="Rocket Wrecked Cover">
+                    <h5>Cover</h5>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x500/764ba2/ffffff?text=Page+2" alt="Rocket Wrecked Page 2">
+                    <h5>Page 2</h5>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x500/667eea/ffffff?text=Page+3" alt="Rocket Wrecked Page 3">
+                    <h5>Page 3</h5>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x500/764ba2/ffffff?text=Page+6" alt="Rocket Wrecked Page 6">
+                    <h5>Page 6</h5>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x500/667eea/ffffff?text=Page+7" alt="Rocket Wrecked Page 7">
+                    <h5>Page 7</h5>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x500/764ba2/ffffff?text=Page+17" alt="Rocket Wrecked Page 17">
+                    <h5>Page 17</h5>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- FILMS & MUSIC -->
 <div id="films" class="content-section">
     <div class="container">
         <div class="section-head">
-            <h2>Film/Music</h2>
-            <h5>Films and Original Music</h5>
+            <h2>Film</h2>
+            <h5>Feature Film Work</h5>
+        </div>
+
+        <div style="margin-bottom: 60px; padding: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+            <h3 style="font-family: 'Montserrat', sans-serif; font-size: 2em; margin-bottom: 20px; text-align: center;">Revenge Salad</h3>
+            <p style="color: #999; font-size: 1.1em; margin-bottom: 20px; text-align: center;">Revenge Salad is...</p>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <a href="#" class="btn">Learn More</a>
+            </div>
+
+            <!-- Storyboards Subsection -->
+            <div class="subsection">
+                <h4>Storyboards</h4>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/ee0979/ffffff?text=Chase" alt="Chase Storyboard" class="clickable-image" onclick="openLightbox(this.src)">
+                        <h5>Chase</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/ff6a00/ffffff?text=Load+Into+Trunk" alt="Load Into Trunk Storyboard" class="clickable-image" onclick="openLightbox(this.src)">
+                        <h5>Load Into Trunk</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/ee0979/ffffff?text=Crash" alt="Crash Storyboard" class="clickable-image" onclick="openLightbox(this.src)">
+                        <h5>Crash</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/ff6a00/ffffff?text=Pan+Smack" alt="Pan Smack Storyboard" class="clickable-image" onclick="openLightbox(this.src)">
+                        <h5>Pan Smack</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/ee0979/ffffff?text=Chair+Punch" alt="Chair Punch Storyboard" class="clickable-image" onclick="openLightbox(this.src)">
+                        <h5>Chair Punch</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/ff6a00/ffffff?text=Hospital+Burn" alt="Hospital Burn Storyboard" class="clickable-image" onclick="openLightbox(this.src)">
+                        <h5>Hospital Burn</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Characters Subsection -->
+            <div class="subsection">
+                <h4>Characters</h4>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x400/667eea/ffffff?text=Revenge" alt="Revenge Character">
+                        <h5>Revenge</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x400/764ba2/ffffff?text=Avery" alt="Avery Character">
+                        <h5>Avery</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x400/667eea/ffffff?text=Jesus" alt="Jesus Character">
+                        <h5>Jesus</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x400/764ba2/ffffff?text=Yoshimi" alt="Yoshimi Character">
+                        <h5>Yoshimi</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x400/667eea/ffffff?text=Nia" alt="Nia Character">
+                        <h5>Nia</h5>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x400/764ba2/ffffff?text=Stone" alt="Stone Character">
+                        <h5>Stone</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ART SECTION -->
+<div id="art" class="content-section">
+    <div class="container">
+        <div class="section-head">
+            <h2>Art</h2>
+            <h5>Original Artwork and Illustrations</h5>
+        </div>
+
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300/667eea/ffffff?text=Gravel+Road" alt="Gravel Road">
+                <h5>Gravel Road</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300/764ba2/ffffff?text=Money+Steal" alt="Money Steal">
+                <h5>Money Steal</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300/667eea/ffffff?text=Flashlights" alt="Flashlights">
+                <h5>Flashlights</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300/764ba2/ffffff?text=Car+Gun+Point" alt="Car Gun Point">
+                <h5>Car Gun Point</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300/667eea/ffffff?text=Slam" alt="Slam">
+                <h5>Slam</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300/764ba2/ffffff?text=Ha+Ha+Ha" alt="Ha Ha Ha">
+                <h5>Ha Ha Ha</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MUSIC SECTION -->
+<div id="music" class="content-section">
+    <div class="container">
+        <div class="section-head">
+            <h2>Music</h2>
+            <h5>Original Songs and Compositions</h5>
         </div>
 
         <div class="content-grid">
             <div class="content-item">
-                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=Revenge+Salad" alt="Revenge Salad">
+                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=Under+The+Bus" alt="Under The Bus">
                 <div class="content-details">
-                    <h4>Revenge Salad (Film)</h4>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-
-            <div class="content-item">
-                <img src="https://via.placeholder.com/400x250/ff6a00/ffffff?text=Under+The+Bus" alt="Under The Bus">
-                <div class="content-details">
-                    <h4>Under The Bus (Music)</h4>
+                    <h4>Under The Bus</h4>
                     <a href="#" class="btn">Listen</a>
                 </div>
             </div>
 
             <div class="content-item">
-                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=Walt+Disney" alt="Walt Disney">
+                <img src="https://via.placeholder.com/400x250/ff6a00/ffffff?text=Walt+Disney" alt="Walt Disney">
                 <div class="content-details">
-                    <h4>Walt Disney (Music)</h4>
+                    <h4>Walt Disney</h4>
+                    <a href="#" class="btn">Listen</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=Mary+Waves+To+Me" alt="Mary Waves To Me">
+                <div class="content-details">
+                    <h4>Mary Waves To Me</h4>
+                    <a href="#" class="btn">Listen</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/ff6a00/ffffff?text=All+My+Life" alt="All My Life">
+                <div class="content-details">
+                    <h4>All My Life - KK & Jojo</h4>
+                    <a href="#" class="btn">Listen</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/ee0979/ffffff?text=All+Saints" alt="All Saints - Never Ever">
+                <div class="content-details">
+                    <h4>All Saints - Never Ever</h4>
+                    <a href="#" class="btn">Listen</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <img src="https://via.placeholder.com/400x250/ff6a00/ffffff?text=Fishbowl" alt="Fishbowl">
+                <div class="content-details">
+                    <h4>Fishbowl</h4>
                     <a href="#" class="btn">Listen</a>
                 </div>
             </div>
@@ -596,19 +1004,58 @@
     </div>
 </div>
 
-<footer id="contact">
+<!-- CONTACT -->
+<div id="contact" class="content-section">
     <div class="container">
-        <h3 style="color: white; margin-bottom: 20px; font-family: 'Montserrat', sans-serif;">Resume/Contact</h3>
-        <p style="margin-bottom: 20px;">Available for video editing, directing, writing, and creative collaborations.</p>
-        <p>© Copyright Ryan Drane 2024 | All Rights Reserved</p>
-        <p style="margin-top: 20px;">
-            <a href="https://www.youtube.com/@downthedrane8626" target="_blank">YouTube</a> • 
-            <a href="https://www.instagram.com/downthedrane/" target="_blank">Instagram</a> • 
-            <a href="https://twitter.com/DowntheDrane2" target="_blank">Twitter</a> • 
-            <a href="https://www.facebook.com/downthedrane" target="_blank">Facebook</a>
-        </p>
+        <div class="section-head">
+            <h2>Resume/Contact</h2>
+            <h5>Get In Touch</h5>
+        </div>
+        <div style="text-align: center; padding: 40px;">
+            <p style="color: #999; font-size: 1.2em; margin-bottom: 20px;">For inquiries, collaborations, or to view my full resume, please reach out!</p>
+            <div class="social-links">
+                <a href="https://twitter.com/DowntheDrane2" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.instagram.com/downthedrane/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/downthedrane" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.youtube.com/@downthedrane8626" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Ryan Drane. All Rights Reserved.</p>
+        <p>Comedian | Director | Writer | Pop Culture Wizard</p>
     </div>
 </footer>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+</div>
+
+<script>
+    function openLightbox(src) {
+        document.getElementById('lightbox').classList.add('active');
+        document.getElementById('lightbox-img').src = src;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close lightbox on Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+</script>
 
 </body>
 </html>
