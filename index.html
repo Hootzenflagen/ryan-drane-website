@@ -322,6 +322,7 @@
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+            flex-direction: column;
         }
 
         .lightbox.active {
@@ -330,7 +331,7 @@
 
         .lightbox-content {
             max-width: 90%;
-            max-height: 90%;
+            max-height: 80%;
             object-fit: contain;
             pointer-events: none;
             user-select: none;
@@ -348,10 +349,52 @@
             font-weight: bold;
             cursor: pointer;
             transition: color 0.3s;
+            user-select: none;
         }
 
         .lightbox-close:hover {
             color: #ff4757;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            user-select: none;
+            padding: 20px;
+            z-index: 10000;
+        }
+
+        .lightbox-prev {
+            left: 100px;
+        }
+
+        .lightbox-next {
+            right: 100px;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            color: #ff4757;
+        }
+
+        .lightbox-caption {
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            text-align: center;
+            max-width: 80%;
+            user-select: none;
+            margin-top: 20px;
         }
 
         .clickable-image {
@@ -1051,14 +1094,78 @@
 <!-- Lightbox Modal -->
 <div id="lightbox" class="lightbox" onclick="closeLightbox()">
     <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <span class="lightbox-prev" onclick="event.stopPropagation(); navigateLightbox(-1)">&#10094;</span>
+    <span class="lightbox-next" onclick="event.stopPropagation(); navigateLightbox(1)">&#10095;</span>
     <img class="lightbox-content" id="lightbox-img">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
 
 <script>
+    var currentImageIndex = 0;
+    var galleryImages = [];
+    var galleryCaptions = [];
+
     function openLightbox(src) {
+        // Find the clicked image element
+        var clickedImg = event.target;
+
+        // Find the parent gallery container
+        var gallery = clickedImg.closest('.content-grid, .image-gallery');
+
+        // Get all clickable images in this gallery
+        if (gallery) {
+            var images = gallery.querySelectorAll('.clickable-image');
+            galleryImages = [];
+            galleryCaptions = [];
+
+            // Build array of image sources and captions
+            images.forEach(function(img) {
+                var onclick = img.getAttribute('onclick');
+                if (onclick) {
+                    var match = onclick.match(/openLightbox\('([^']+)'\)/);
+                    if (match) {
+                        galleryImages.push(match[1]);
+                    } else {
+                        // Handle this.src case
+                        galleryImages.push(img.src);
+                    }
+
+                    // Get caption from alt attribute or nearby h4/h5
+                    var caption = '';
+                    var imageSrc = match ? match[1] : img.src;
+
+                    // Don't add captions for character images (they have names in the images)
+                    if (imageSrc.indexOf('characters') === -1) {
+                        var parentItem = img.closest('.content-item, .gallery-item');
+                        if (parentItem) {
+                            var title = parentItem.querySelector('h4, h5');
+                            if (title) {
+                                caption = title.textContent;
+                            }
+                        }
+                        if (!caption) {
+                            caption = img.getAttribute('alt') || '';
+                        }
+                    }
+                    galleryCaptions.push(caption);
+                }
+            });
+
+            // Find current image index
+            currentImageIndex = galleryImages.indexOf(src);
+        } else {
+            // Single image, not in a gallery
+            galleryImages = [src];
+            galleryCaptions = [clickedImg.getAttribute('alt') || ''];
+            currentImageIndex = 0;
+        }
+
         document.getElementById('lightbox').classList.add('active');
         document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox-caption').textContent = galleryCaptions[currentImageIndex];
         document.body.style.overflow = 'hidden';
+
+        updateArrowVisibility();
     }
 
     function closeLightbox() {
@@ -1066,10 +1173,46 @@
         document.body.style.overflow = 'auto';
     }
 
-    // Close lightbox on Escape key
+    function navigateLightbox(direction) {
+        currentImageIndex += direction;
+
+        // Wrap around
+        if (currentImageIndex < 0) {
+            currentImageIndex = galleryImages.length - 1;
+        } else if (currentImageIndex >= galleryImages.length) {
+            currentImageIndex = 0;
+        }
+
+        document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+        document.getElementById('lightbox-caption').textContent = galleryCaptions[currentImageIndex];
+        updateArrowVisibility();
+    }
+
+    function updateArrowVisibility() {
+        var prevArrow = document.querySelector('.lightbox-prev');
+        var nextArrow = document.querySelector('.lightbox-next');
+
+        // Hide arrows if only one image
+        if (galleryImages.length <= 1) {
+            prevArrow.style.display = 'none';
+            nextArrow.style.display = 'none';
+        } else {
+            prevArrow.style.display = 'block';
+            nextArrow.style.display = 'block';
+        }
+    }
+
+    // Keyboard navigation
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeLightbox();
+        var lightbox = document.getElementById('lightbox');
+        if (lightbox.classList.contains('active')) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            } else if (event.key === 'ArrowLeft') {
+                navigateLightbox(-1);
+            } else if (event.key === 'ArrowRight') {
+                navigateLightbox(1);
+            }
         }
     });
 </script>
