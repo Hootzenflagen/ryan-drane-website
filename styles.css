@@ -514,4 +514,12 @@ footer a:hover {
         right: 20px;
         font-size: 30px;
     }
+
+    .lightbox-prev {
+        left: 10px;
+    }
+
+    .lightbox-next {
+        right: 10px;
+    }
 }
