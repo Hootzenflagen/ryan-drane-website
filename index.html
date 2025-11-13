@@ -7,515 +7,8 @@
     <meta name="description" content="Ryan Drane - A super excited artist that writes, draws, and films. Comedian, Director, Writer, and Pop Culture Wizard.">
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&family=Vollkorn:400,400i,700,700i&family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/8a8f9499dc.js" crossorigin="anonymous" async></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.7;
-            color: #333;
-            background: #000;
-        }
-
-        /* Header */
-        header {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .topbar {
-            text-align: right;
-            margin-bottom: 15px;
-        }
-
-        .tp-social a {
-            color: #fff;
-            font-size: 18px;
-            margin-left: 15px;
-            transition: color 0.3s;
-        }
-
-        .tp-social a:hover {
-            color: #ff4757;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        nav ul li {
-            margin: 0 12px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #ff4757;
-        }
-
-        /* Intro Section */
-        #intro {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 150px 0 80px 0;
-            text-align: center;
-            color: white;
-        }
-
-        #intro img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
-        #intro .hero-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 5em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-            letter-spacing: 3px;
-        }
-
-        #intro .titles {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1.3em;
-            margin: 10px 0;
-            font-weight: 300;
-        }
-
-        #intro .tagline {
-            font-family: 'Vollkorn', serif;
-            font-size: 1.5em;
-            font-style: italic;
-            margin-top: 20px;
-            font-weight: 700;
-        }
-
-        /* About Section */
-        #about {
-            background: #1a1a1a;
-            padding: 80px 0;
-        }
-
-        #about h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            color: white;
-        }
-
-        .quote {
-            font-family: 'Vollkorn', serif;
-            font-size: 1.15em;
-            font-style: italic;
-            color: #ddd;
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        .quote a {
-            color: #ff4757;
-            text-decoration: none;
-        }
-
-        .quote a:hover {
-            text-decoration: underline;
-        }
-
-        .about-content {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .about-image {
-            flex: 0 0 300px;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .about-text {
-            flex: 1;
-            color: white;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.05em;
-        }
-
-        .about-text a {
-            color: #ff4757;
-            text-decoration: none;
-        }
-
-        .about-text a:hover {
-            text-decoration: underline;
-        }
-
-        .social-links {
-            margin-top: 20px;
-            font-size: 24px;
-        }
-
-        .social-links a {
-            color: white;
-            margin-right: 15px;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #ff4757;
-        }
-
-        /* Content Sections */
-        .content-section {
-            padding: 80px 0;
-            color: white;
-        }
-
-        .content-section:nth-child(even) {
-            background: #0d0d0d;
-        }
-
-        .content-section:nth-child(odd) {
-            background: #1a1a1a;
-        }
-
-        .section-head {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-head h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .section-head h5 {
-            color: #999;
-            font-size: 1.1em;
-            font-weight: 400;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .content-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .content-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
-        }
-
-        .content-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .content-details {
-            padding: 20px;
-        }
-
-        .content-details h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-        }
-
-        .content-details p {
-            color: #999;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 8px 20px;
-            background: #ff4757;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.9em;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background: #ff3838;
-        }
-
-        /* Footer */
-        footer {
-            background: #000;
-            padding: 40px 0;
-            text-align: center;
-            color: #666;
-            border-top: 1px solid #333;
-        }
-
-        footer a {
-            color: #ff4757;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Lightbox Modal */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            justify-content: center;
-            align-items: center;
-            cursor: default;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            flex-direction: column;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 80%;
-            object-fit: contain;
-            pointer-events: none;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-            user-select: none;
-        }
-
-        .lightbox-close:hover {
-            color: #ff4757;
-        }
-
-        .lightbox-prev,
-        .lightbox-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 60px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-            user-select: none;
-            padding: 20px;
-            z-index: 10000;
-        }
-
-        .lightbox-prev {
-            left: 100px;
-        }
-
-        .lightbox-next {
-            right: 100px;
-        }
-
-        .lightbox-prev:hover,
-        .lightbox-next:hover {
-            color: #ff4757;
-        }
-
-        .lightbox-caption {
-            color: white;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px 30px;
-            border-radius: 5px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
-            text-align: center;
-            max-width: 80%;
-            user-select: none;
-            margin-top: 20px;
-        }
-
-        .clickable-image {
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .clickable-image:hover {
-            opacity: 0.8;
-        }
-
-        /* Image Gallery Styles */
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .gallery-item {
-            text-align: center;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .gallery-item h5 {
-            margin-top: 10px;
-            font-family: 'Montserrat', sans-serif;
-            color: white;
-            font-size: 0.9em;
-        }
-
-        /* Subsection Styles */
-        .subsection {
-            margin-top: 50px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .subsection h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #ff4757;
-            text-align: center;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: row;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            nav ul li {
-                margin: 5px 8px;
-            }
-
-            nav ul li a {
-                font-size: 11px;
-            }
-
-            #intro {
-                padding: 0;
-                margin-top: 200px;
-            }
-
-            #intro .container {
-                padding: 0;
-                max-width: 100%;
-            }
-
-            #intro img {
-                width: 100%;
-                max-width: 100%;
-                display: block;
-                margin: 0;
-            }
-
-            #intro .hero-name {
-                font-size: 2.5em;
-            }
-
-            .about-content {
-                flex-direction: column;
-            }
-
-            .about-image {
-                flex: 1;
-                text-align: center;
-            }
-
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .image-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 15px;
-            }
-
-            .gallery-item img {
-                height: 200px;
-            }
-
-            .lightbox-close {
-                top: 10px;
-                right: 20px;
-                font-size: 30px;
-            }
-        }
-    </style>
 </head>
 <body>
 
@@ -535,7 +28,7 @@
                 <li><a href="#intro">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#videos">Videos</a></li>
-                <li><a href="#animations">Animations</a></li>
+                <li><a href="#animations">Popular Videos</a></li>
                 <li><a href="#comics">Comics</a></li>
                 <li><a href="#films">Film</a></li>
                 <li><a href="#music">Music</a></li>
@@ -788,10 +281,12 @@
             </div>
 
             <div class="content-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect width='400' height='250' fill='%23764ba2'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23ffffff'%3EPassion%3C/text%3E%3C/svg%3E" alt="Passion">
+                <a href="https://www.youtube.com/watch?v=p1ccSg79FLE&feature=youtu.be" target="_blank">
+                    <img src="https://img.youtube.com/vi/p1ccSg79FLE/maxresdefault.jpg" alt="Christmas 2024">
+                </a>
                 <div class="content-details">
-                    <h4>Passion</h4>
-                    <a href="https://www.youtube.com/@downthedrane8626" target="_blank" class="btn">Watch</a>
+                    <h4>Christmas 2024</h4>
+                    <a href="https://www.youtube.com/watch?v=p1ccSg79FLE&feature=youtu.be" target="_blank" class="btn">Watch</a>
                 </div>
             </div>
 
@@ -802,6 +297,16 @@
                 <div class="content-details">
                     <h4>Kids Club Multiview Directing</h4>
                     <a href="https://www.youtube.com/watch?v=xG6i_Wb93-I" target="_blank" class="btn">Watch</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=tsQeByAljJg&feature=youtu.be" target="_blank">
+                    <img src="https://img.youtube.com/vi/tsQeByAljJg/maxresdefault.jpg" alt="Veritas 2">
+                </a>
+                <div class="content-details">
+                    <h4>Veritas 2</h4>
+                    <a href="https://www.youtube.com/watch?v=tsQeByAljJg&feature=youtu.be" target="_blank" class="btn">Watch</a>
                 </div>
             </div>
         </div>
@@ -957,8 +462,8 @@
                         <h5>Chair Punch</h5>
                     </div>
                     <div class="gallery-item">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23ff6a00'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23ffffff'%3EHospital Burn%3C/text%3E%3C/svg%3E" alt="Hospital Burn Storyboard" class="clickable-image" onclick="openLightbox(this.src)">
-                        <h5>Hospital Burn</h5>
+                        <img src="Photos/Revenge Salad/story boards/thumbs/wide-shot-road-thumbnail.jpg" alt="Wide Shot of Road Storyboard" class="clickable-image" onclick="openLightbox('Photos/Revenge Salad/story boards/lightbox/wide-shot-road.jpg')">
+                        <h5>Wide Shot of Road</h5>
                     </div>
                 </div>
             </div>
@@ -1068,16 +573,27 @@
 <div id="contact" class="content-section">
     <div class="container">
         <div class="section-head">
-            <h2>Resume/Contact</h2>
-            <h5>Get In Touch</h5>
+            <h2>CONTACT</h2>
         </div>
-        <div style="text-align: center; padding: 40px;">
-            <p style="color: #999; font-size: 1.2em; margin-bottom: 20px;">For inquiries, collaborations, or to view my full resume, please reach out!</p>
-            <div class="social-links">
+
+        <div style="text-align: center; color: white;">
+            <p style="font-size: 1.2em; margin-bottom: 40px;">
+                E-mail me at <a href="mailto:ryandrane2@gmail.com" style="color: #ff4757; text-decoration: none;">ryandrane2@gmail.com</a>
+            </p>
+
+            <p style="font-size: 1.1em; margin-bottom: 20px; color: #999;">Find me across social media at</p>
+
+            <div class="social-links" style="margin-bottom: 50px; display: flex; justify-content: center;">
                 <a href="https://twitter.com/DowntheDrane2" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
                 <a href="https://www.instagram.com/downthedrane/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://www.facebook.com/downthedrane" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://www.youtube.com/@downthedrane8626" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <div>
+                <a href="Resume/Ryan-Drane-Resume-Nov-2025.pdf" target="_blank" class="btn" style="font-size: 1.1em; padding: 15px 40px;">
+                    View Resume
+                </a>
             </div>
         </div>
     </div>
