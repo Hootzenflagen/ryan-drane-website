@@ -372,11 +372,11 @@ footer a:hover {
 }
 
 .lightbox-prev {
-    left: 100px;
+    left: 20px;
 }
 
 .lightbox-next {
-    right: 100px;
+    right: 20px;
 }
 
 .lightbox-prev:hover,
