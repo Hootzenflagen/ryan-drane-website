@@ -367,16 +367,23 @@ footer a:hover {
     cursor: pointer;
     transition: color 0.3s;
     user-select: none;
-    padding: 20px;
+    padding: 5px;
     z-index: 10000;
 }
 
+@media (min-width: 769px) {
+    .lightbox-prev,
+    .lightbox-next {
+        padding: 20px;
+    }
+}
+
 .lightbox-prev {
-    left: 20px;
+    left: 100px;
 }
 
 .lightbox-next {
-    right: 20px;
+    right: 100px;
 }
 
 .lightbox-prev:hover,
@@ -516,10 +523,10 @@ footer a:hover {
     }
 
     .lightbox-prev {
-        left: 10px;
+        left: 2px;
     }
 
     .lightbox-next {
-        right: 10px;
+        right: 2px;
     }
 }
