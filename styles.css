@@ -9,7 +9,6 @@ body {
     line-height: 1.7;
     color: #333;
     background: #000;
-    cursor: default;
 }
 
 /* Header */
@@ -29,9 +28,14 @@ header {
     padding: 0 20px;
 }
 
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .topbar {
-    text-align: right;
-    margin-bottom: 15px;
+    order: 2;
 }
 
 .tp-social a {
@@ -43,6 +47,11 @@ header {
 
 .tp-social a:hover {
     color: #ff4757;
+}
+
+nav {
+    order: 1;
+    flex: 1;
 }
 
 nav ul {
@@ -73,9 +82,10 @@ nav ul li a:hover {
 /* Intro Section */
 #intro {
     background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
-    padding: 150px 0 80px 0;
+    padding: 0 0 80px 0;
     text-align: center;
     color: white;
+    margin-top: 70px;
 }
 
 #intro img {
