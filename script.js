@@ -172,3 +172,56 @@
         }
     }
 })();
+
+// Initialize Swiper carousels for mobile
+(function() {
+    'use strict';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Only initialize Swiper on mobile devices
+        function initSwipers() {
+            const isMobile = window.innerWidth <= 768;
+
+            if (isMobile) {
+                // Find all gallery and content grid swipers and initialize them
+                const galleries = document.querySelectorAll('.image-gallery.swiper, .content-grid.swiper');
+
+                galleries.forEach(function(gallery) {
+                    // Check if already initialized
+                    if (!gallery.swiper) {
+                        new Swiper(gallery, {
+                            slidesPerView: 'auto',
+                            spaceBetween: 15,
+                            centeredSlides: true,
+                            grabCursor: true,
+                            pagination: {
+                                el: gallery.querySelector('.swiper-pagination'),
+                                clickable: true,
+                                dynamicBullets: true,
+                            },
+                            breakpoints: {
+                                // When window width is <= 768px
+                                768: {
+                                    slidesPerView: 'auto',
+                                    spaceBetween: 15,
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        // Initialize on load
+        initSwipers();
+
+        // Re-initialize on resize with debounce
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                initSwipers();
+            }, 250);
+        });
+    });
+})();
