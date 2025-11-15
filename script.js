@@ -71,31 +71,54 @@
         // Touch/swipe navigation for mobile
         let touchStartX = 0;
         let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+        let isSwiping = false;
 
         if (lightbox) {
             lightbox.addEventListener('touchstart', function(event) {
                 touchStartX = event.changedTouches[0].screenX;
-            }, false);
+                touchStartY = event.changedTouches[0].screenY;
+                isSwiping = false;
+            }, { passive: true });
+
+            lightbox.addEventListener('touchmove', function(event) {
+                // Detect if user is swiping
+                const currentX = event.changedTouches[0].screenX;
+                const diffX = Math.abs(touchStartX - currentX);
+                if (diffX > 10) {
+                    isSwiping = true;
+                }
+            }, { passive: true });
 
             lightbox.addEventListener('touchend', function(event) {
                 touchEndX = event.changedTouches[0].screenX;
-                handleSwipe();
+                touchEndY = event.changedTouches[0].screenY;
+
+                if (handleSwipe()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
             }, false);
         }
 
         function handleSwipe() {
             const swipeThreshold = 50; // minimum distance for swipe
-            const diff = touchStartX - touchEndX;
+            const diffX = touchStartX - touchEndX;
+            const diffY = Math.abs(touchStartY - touchEndY);
 
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
+            // Only trigger if horizontal swipe is greater than vertical
+            if (Math.abs(diffX) > swipeThreshold && diffY < 100) {
+                if (diffX > 0) {
                     // Swiped left - next image
                     navigateLightbox(1);
                 } else {
                     // Swiped right - previous image
                     navigateLightbox(-1);
                 }
+                return true;
             }
+            return false;
         }
     }
 
