@@ -67,6 +67,36 @@
                 }
             }
         });
+
+        // Touch/swipe navigation for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        if (lightbox) {
+            lightbox.addEventListener('touchstart', function(event) {
+                touchStartX = event.changedTouches[0].screenX;
+            }, false);
+
+            lightbox.addEventListener('touchend', function(event) {
+                touchEndX = event.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+        }
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // minimum distance for swipe
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swiped left - next image
+                    navigateLightbox(1);
+                } else {
+                    // Swiped right - previous image
+                    navigateLightbox(-1);
+                }
+            }
+        }
     }
 
     function openLightbox(src, clickedImg) {
