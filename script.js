@@ -172,3 +172,63 @@
         }
     }
 })();
+
+// Initialize Swiper for mobile carousels
+(function() {
+    'use strict';
+
+    function initMobileCarousels() {
+        // Only run on mobile devices
+        if (window.innerWidth <= 768) {
+            const carousels = document.querySelectorAll('.mobile-carousel.swiper');
+
+            carousels.forEach(function(carousel) {
+                // Skip if already initialized
+                if (carousel.swiper) {
+                    return;
+                }
+
+                new Swiper(carousel, {
+                    slidesPerView: 1.3,
+                    spaceBetween: 20,
+                    centeredSlides: false,
+                    grabCursor: true,
+                    touchRatio: 1,
+                    threshold: 5,
+                    pagination: {
+                        el: carousel.querySelector('.swiper-pagination'),
+                        clickable: true,
+                        dynamicBullets: true,
+                    },
+                    on: {
+                        init: function() {
+                            console.log('Swiper initialized');
+                        }
+                    }
+                });
+            });
+        }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileCarousels);
+    } else {
+        initMobileCarousels();
+    }
+
+    // Reinitialize on resize (debounced)
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            // Destroy existing instances first
+            document.querySelectorAll('.mobile-carousel.swiper').forEach(function(el) {
+                if (el.swiper) {
+                    el.swiper.destroy(true, true);
+                }
+            });
+            initMobileCarousels();
+        }, 250);
+    });
+})();
