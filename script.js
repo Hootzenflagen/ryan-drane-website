@@ -334,12 +334,16 @@
             });
         });
 
-        // Track resume download clicks
+        // Track resume and cover letter download clicks
         document.querySelectorAll('a[href*="Resume"]').forEach(function(link) {
             link.addEventListener('click', function() {
-                gtag('event', 'resume_download', {
+                const href = link.getAttribute('href');
+                const isResume = href.includes('Resume.pdf');
+                const isCoverLetter = href.includes('Cover Letter');
+
+                gtag('event', isResume ? 'resume_download' : 'cover_letter_download', {
                     'event_category': 'Resume',
-                    'event_label': 'Resume PDF Download'
+                    'event_label': isCoverLetter ? 'Cover Letter PDF Download' : 'Resume PDF Download'
                 });
             });
         });
