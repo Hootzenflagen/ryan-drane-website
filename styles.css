@@ -537,6 +537,14 @@ footer a:hover {
     text-align: center;
 }
 
+/* Resume Buttons */
+.resume-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     header .container {
@@ -681,5 +689,16 @@ footer a:hover {
 
     .lightbox-next {
         right: 2px;
+    }
+
+    .resume-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .resume-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
     }
 }
