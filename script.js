@@ -285,3 +285,82 @@
         }, 250);
     });
 })();
+
+// Google Analytics Event Tracking
+(function() {
+    'use strict';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Track video/content button clicks (Watch/Listen buttons)
+        document.querySelectorAll('.content-item .btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const contentItem = btn.closest('.content-item');
+                const title = contentItem.querySelector('h4');
+                const videoTitle = title ? title.textContent.trim() : 'Unknown';
+                const section = btn.closest('.content-section');
+                const sectionHead = section ? section.querySelector('.section-head h2') : null;
+                const sectionName = sectionHead ? sectionHead.textContent.trim() : 'Unknown';
+
+                gtag('event', 'video_click', {
+                    'event_category': sectionName,
+                    'event_label': videoTitle,
+                    'video_title': videoTitle,
+                    'section': sectionName
+                });
+            });
+        });
+
+        // Track comic/image clicks
+        document.querySelectorAll('.clickable-image').forEach(function(img) {
+            img.addEventListener('click', function() {
+                const contentItem = img.closest('.content-item, .gallery-item');
+                const title = contentItem ? contentItem.querySelector('h4, h5') : null;
+                const imageTitle = title ? title.textContent.trim() : (img.alt || 'Unknown');
+                const section = img.closest('.content-section');
+                const sectionHead = section ? section.querySelector('.section-head h2') : null;
+                const sectionName = sectionHead ? sectionHead.textContent.trim() : 'Unknown';
+
+                // Determine if it's a comic or film-related image
+                const isComic = img.src.includes('Comics') || img.src.includes('Rocket');
+                const isFilm = img.src.includes('Revenge Salad');
+                const category = isFilm ? 'Film' : (isComic ? 'Comics' : sectionName);
+
+                gtag('event', 'image_click', {
+                    'event_category': category,
+                    'event_label': imageTitle,
+                    'image_title': imageTitle,
+                    'section': sectionName
+                });
+            });
+        });
+
+        // Track resume download clicks
+        document.querySelectorAll('a[href*="Resume"]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                gtag('event', 'resume_download', {
+                    'event_category': 'Resume',
+                    'event_label': 'Resume PDF Download'
+                });
+            });
+        });
+
+        // Track social media button clicks
+        document.querySelectorAll('.social-links a, .tp-social a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                const href = link.getAttribute('href');
+                let platform = 'Unknown';
+
+                if (href.includes('twitter')) platform = 'Twitter';
+                else if (href.includes('instagram')) platform = 'Instagram';
+                else if (href.includes('facebook')) platform = 'Facebook';
+                else if (href.includes('youtube')) platform = 'YouTube';
+
+                gtag('event', 'social_click', {
+                    'event_category': 'Social Media',
+                    'event_label': platform,
+                    'platform': platform
+                });
+            });
+        });
+    });
+})();
