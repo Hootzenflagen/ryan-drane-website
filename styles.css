@@ -537,6 +537,29 @@ footer a:hover {
     text-align: center;
 }
 
+/* View Count Styling */
+.view-count {
+    color: #ccc;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.view-count i {
+    color: #ff4757;
+}
+
+.view-count .number {
+    font-weight: 700;
+    color: white;
+}
+
+#animations .content-details h4 {
+    color: white;
+}
+
 /* Resume Buttons */
 .resume-buttons {
     display: flex;
